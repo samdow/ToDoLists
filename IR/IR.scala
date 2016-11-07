@@ -5,20 +5,44 @@ object Test extends App {
     }
 
     import DaysOfWeek._
-    case class Task(name: String, dueDate: DaysOfWeek)
+    case class Task(name: String, dueDate: DaysOfWeek) {
+        override def toString = 
+            s"${name} is due ${dueDate}"
+    }
+
     case class Category(name:String, tasks: List[Task] = Nil) {
         //def addTask(task:Task) = {tasks = tasks:+ task}
+        override def toString = {
+            var finalString = ""
+            for(task <- tasks) {
+                finalString = finalString ++ s"${task.name} for ${name} is due ${task.dueDate}\n"
+            }
+            finalString
+        }
     }
 
-    def merge(category: Category, runningList: List[Task]): List[Task] = {
-        runningList ++ category.tasks
+    case class FinalList(tasks: List[(String,Task)]) {
+        override def toString = {
+            var finalString = ""
+            for((category, task) <- tasks) {
+                finalString = finalString ++ s"${task.name} for ${category} is due ${task.dueDate}\n"
+            }
+            finalString
+        }
     }
 
-    def sortCategories(categories: Category *): List[Task] = {
+    def merge(category: Category, runningList: FinalList): FinalList = {
+        def mergeHelper(task:Task) = (category.name, task)
+        FinalList(runningList.tasks ++ category.tasks.map(mergeHelper))
+    }
+
+    def sortCategories(categories: Category *): FinalList = {
         if (categories.isEmpty) 
-            List()
-        else 
-            merge (categories.head, sortCategories(categories.tail :_ *)).sortWith((t1, t2)=> t1.dueDate < t2.dueDate)
+            FinalList(List())
+        else {
+            val flist = merge(categories.head, sortCategories(categories.tail :_ *))
+            FinalList(flist.tasks.sortWith((t1, t2)=> t1._2.dueDate < t2._2.dueDate))
+        }
     }
 
     val dsls = Category("dsls", List(Task("Notebook", Sun), Task("Critique", Tue)))
@@ -26,5 +50,6 @@ object Test extends App {
     val anthro = Category("anthro", List(Task("Read Book", Thu), Task ("Read Article", Tue)))
 
 
+    println(dsls)
     println(sortCategories(dsls, algs, anthro))
 }
