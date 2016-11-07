@@ -6,10 +6,10 @@ For family, I have to call my parents by Monday (top priority).
 
 This would output:
 
-PSet for school due Monday
-Call Parents for family due Monday
-Grading for work due Monday
-Party for fun due Monday
+PSet for school due Monday  
+Call Parents for family due Monday  
+Grading for work due Monday  
+Party for fun due Monday  
 
 Because the things with top priority would be the first
 things that the user should do, down to the things that
