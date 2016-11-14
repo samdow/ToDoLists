@@ -9,12 +9,12 @@ and an Essay due Friday (medium priority).
 
 This might return:
 
-Notebook for DSLs due Sunday
-PSet for Math due Monday
-Critique for DSLs due Tuesday
-Reading for Anthropolgoy due Tuesday
-Essay for Anthropology due Friday
-Test for Math due Friday
+Notebook for DSLs due Sunday  
+PSet for Math due Monday  
+Critique for DSLs due Tuesday  
+Reading for Anthropolgoy due Tuesday  
+Essay for Anthropology due Friday  
+Test for Math due Friday  
 
 Here, we see that days are more important than priority.
 For instance, the person should start the Reading due Tuesday before
