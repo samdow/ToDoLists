@@ -41,6 +41,10 @@ class parserTests extends FunSuite with Matchers {
   }
 
   test("does this pass everything?") {
-  	""" """ ~> List(Category("dsls", List()))
+  	"" ~> List(Category("dsls", List()))
+  }
+
+  test("does this pass everything? 2") {
+    "" ~> List()
   }
 }
