@@ -1,5 +1,5 @@
 # ToDoLists
-## User
+## Use
 To use this DSL, run the following command while in the ToDoLists folder:  
 `sbt run-main todolist.ToDoList path/to/list/file`
 
