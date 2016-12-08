@@ -1,7 +1,9 @@
 # ToDoLists
+## User
 To use this DSL, run the following command while in the ToDoLists folder:  
 `sbt run-main todolist.ToDoList path/to/list/file`
 
+# Documentation
 ## Example 1-Basics
 The most basic program has categories with tasks. It would be in a text file. One basic example looks like this:
 ```
