@@ -45,7 +45,7 @@ precedence. so, this example produces:
 ```
 PSet for Physics due Monday
 Exam for Chemistry due Tuesday
-Lab for Chemitsry due Wednesday
+Lab for Chemitsry due Tuesday
 ```
 
 
