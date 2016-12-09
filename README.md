@@ -12,7 +12,7 @@ Physics:
 Chemistry:
     Lab due Tues
 ```
-The unindented words followed by colons are categories and the indented lines are tasks.
+Users could use the keywords due or by. The unindented words followed by colons are categories and the indented lines are tasks.
 This example will produce:
 ```
 PSet for Physics due Monday
@@ -49,5 +49,5 @@ PSet for Physics due Monday
 Exam for Chemistry due Tuesday
 Lab for Chemitsry due Tuesday
 ```
-
+If two tasks were to have the same day and same precedence, they will be ordered arbitrarily.
 
