@@ -1,5 +1,6 @@
 package todolist
 
+import scala.tools.nsc.EvalLoop
 import java.io.FileNotFoundException
 import todolist.semantics._
 import todolist.ir._
@@ -7,9 +8,9 @@ import todolist.parser._
 import scalafx.application.JFXApp
 
 
-object ToDoList extends App {
+object ToDoList extends EvalLoop with App {
 
-  //val args = parameters.raw
+  override def prompt = "> "
 
   // Error handling: did the user pass two arguments?
   if (args.length != 1) {
@@ -28,12 +29,22 @@ object ToDoList extends App {
 
     // if parsing succeeded...
     case ToDoListParser.Success(t, _) ⇒ {
-      println(eval(program.get))
+      var list:FinalList = eval(program.get)
+      println(list)
+      loop { line => 
+        REPLParser(line) match {
+          case REPLParser.Success(t,_) => {list = REPLeval(t,list); println(list)}
+          case e: REPLParser.NoSuccess => println("""Not a valid command. Valid commands are
+          remove task (number)
+          switch tasks (number) and (number)
+          exit""")
+        }
+      }
     }
   }
 
   /** A string that describes how to use the program **/
-  def usage = "usage: piconot.external.Piconot <maze-file> <rules-file>"
+  def usage = "usage: todolist.ToDoList <list-file>"
 
   /**
     * Given a filename, get a list of the lines in the file
