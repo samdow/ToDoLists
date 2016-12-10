@@ -15,8 +15,8 @@ Chemistry:
 Users could use the keywords due or by. The unindented words followed by colons are categories and the indented lines are tasks.
 This example will produce:
 ```
-PSet for Physics due Monday
-Lab for Chemistry due Tuesday
+1) PSet for Physics due Monday
+2) Lab for Chemistry due Tuesday
 ```
 ### Whitespace
 The tasks must have some amount of whitespace in front of the name of the task.
@@ -45,9 +45,67 @@ The separation of days is more important than the precedence denoted by exclamat
 will still be put before the ones due Tuesday. The tasks on Tuesday will be sorted based on which one has a higher
 precedence. so, this example produces:
 ```
-PSet for Physics due Monday
-Exam for Chemistry due Tuesday
-Lab for Chemitsry due Tuesday
+1) PSet for Physics due Monday
+2) Exam for Chemistry due Tuesday
+3) Lab for Chemitsry due Tuesday
 ```
 If two tasks were to have the same day and same precedence, they will be ordered arbitrarily.
 
+## Example 3-Setting the Day
+To set what day it is, the program requires an extra line at the top of the file. The language is currently only able to look
+at a one week time period. An example program:
+```
+Today is Tuesday
+Physics:
+    Problem Set due Monday !!!
+    PSet due R
+Chemistry:
+    Lab due Tues    !!
+    Exam by Tu 5!
+```
+This will produce:
+```
+1) Exam for Chemistry due Tuesday
+2) Lab for Chemitsry due Tuesday
+3) PSet for Physics due Thursday
+4) Problem Set for Physics due Monday
+```
+
+## Example 4-Updating the List Using Input/Output
+After you've produced your list, the language will have an place to input another command.
+You can either remove a task, indicating that it's done, switch two tasks, indicating that you want
+a different order for the list, or exit, indicating that you are done. As an example, a user may have
+the following list as an output from a program: 
+```
+1) Exam for Chemistry due Tuesday
+2) Lab for Chemitsry due Tuesday
+3) PSet for Physics due Thursday
+4) Problem Set for Physics due Monday
+```
+Then, the user can use different commands to get different outputs:
+```
+> switch tasks 2 and 4
+1) Exam for Chemistry due Tuesday
+2) Problem Set for Physics due Monday
+3) PSet for Physics due Thursday
+4) Lab for Chemitsry due Tuesday
+> remove task 3
+To Do List:
+1) Exam for Chemistry due Tuesday
+2) Problem Set for Physics due Monday
+3) Lab for Chemitsry due Tuesday
+
+Finished Tasks:
+PSet for Physics due Thursday
+> switch tasks 2 and 1
+To Do List:
+1) Problem Set for Physics due Monday
+2) Exam for Chemistry due Tuesday
+3) Lab for Chemitsry due Tuesday
+
+Finished Tasks:
+PSet for Physics due Thursday
+> exit
+```
+Right now, the program only supports those 3 commands. Any other command will result in the program printing out
+the possible valid commands.
