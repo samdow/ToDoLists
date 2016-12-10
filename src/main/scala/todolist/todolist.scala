@@ -8,6 +8,9 @@ import todolist.parser._
 import scalafx.application.JFXApp
 
 
+/*
+ * Main executable for ToDoLists by Samantha Andow
+ */
 object ToDoList extends EvalLoop with App {
 
   override def prompt = "> "
@@ -31,9 +34,12 @@ object ToDoList extends EvalLoop with App {
     case ToDoListParser.Success(t, _) ⇒ {
       var list:FinalList = eval(program.get)
       println(list)
+      //The REPL happens after the first list has been processed
       loop { line => 
         REPLParser(line) match {
           case REPLParser.Success(t,_) => {list = REPLeval(t,list); println(list)}
+          
+          //If it's not a valid command, give the user the options of valid commands
           case e: REPLParser.NoSuccess => println("""Not a valid command. Valid commands are
           remove task (number)
           switch tasks (number) and (number)
